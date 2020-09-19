@@ -1,0 +1,103 @@
+[93m[WARN 02:25:27.618791][0m [Environment:165] XDG_SESSION_CLASS not set in this environment!
+[93m[WARN 02:25:27.750964][0m [Preferences:192] '/usr/share/plank/themes/Matte/dock.theme' is read-only!
+[93m[WARN 02:25:27.770349][0m [Preferences:378] Missing key 'TopRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770388][0m [Preferences:378] Missing key 'BottomRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770423][0m [Preferences:378] Missing key 'LineWidth' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770457][0m [Preferences:378] Missing key 'OuterStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770491][0m [Preferences:378] Missing key 'FillStartColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770525][0m [Preferences:378] Missing key 'FillEndColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770559][0m [Preferences:378] Missing key 'InnerStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770628][0m [Preferences:378] Missing key 'ItemPadding' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770664][0m [Preferences:378] Missing key 'IndicatorSize' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770714][0m [Preferences:378] Missing key 'UrgentBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770750][0m [Preferences:378] Missing key 'LaunchBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770784][0m [Preferences:378] Missing key 'FadeOpacity' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770818][0m [Preferences:378] Missing key 'ClickTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770852][0m [Preferences:378] Missing key 'UrgentBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770886][0m [Preferences:378] Missing key 'LaunchBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770920][0m [Preferences:378] Missing key 'ActiveTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770953][0m [Preferences:378] Missing key 'SlideTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.770986][0m [Preferences:378] Missing key 'FadeTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.771020][0m [Preferences:378] Missing key 'HideTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.771054][0m [Preferences:378] Missing key 'GlowSize' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.771087][0m [Preferences:378] Missing key 'GlowTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.771150][0m [Preferences:378] Missing key 'GlowPulseTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.771186][0m [Preferences:378] Missing key 'UrgentHueShift' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.771220][0m [Preferences:378] Missing key 'ItemMoveTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:27.771270][0m [Preferences:378] Missing key 'BadgeColor' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.568841][0m [Preferences:192] '/usr/share/plank/themes/Matte/dock.theme' is read-only!
+[93m[WARN 02:25:28.568978][0m [Preferences:378] Missing key 'TopRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569014][0m [Preferences:378] Missing key 'BottomRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569047][0m [Preferences:378] Missing key 'LineWidth' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569079][0m [Preferences:378] Missing key 'OuterStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569115][0m [Preferences:378] Missing key 'FillStartColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569159][0m [Preferences:378] Missing key 'FillEndColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569323][0m [Preferences:378] Missing key 'InnerStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569411][0m [Preferences:378] Missing key 'ItemPadding' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569445][0m [Preferences:378] Missing key 'IndicatorSize' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569492][0m [Preferences:378] Missing key 'UrgentBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569525][0m [Preferences:378] Missing key 'LaunchBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569558][0m [Preferences:378] Missing key 'FadeOpacity' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569590][0m [Preferences:378] Missing key 'ClickTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569622][0m [Preferences:378] Missing key 'UrgentBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569655][0m [Preferences:378] Missing key 'LaunchBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569687][0m [Preferences:378] Missing key 'ActiveTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:25:28.569718][0m [Preferences:378] Missing key 'SlideTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.t[93m[WARN 02:27:15.981594][0m [Environment:165] XDG_SESSION_CLASS not set in this environment!
+[93m[WARN 02:27:16.059104][0m [Preferences:192] '/usr/share/plank/themes/Matte/dock.theme' is read-only!
+[93m[WARN 02:27:16.059272][0m [Preferences:378] Missing key 'TopRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059314][0m [Preferences:378] Missing key 'BottomRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059353][0m [Preferences:378] Missing key 'LineWidth' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059392][0m [Preferences:378] Missing key 'OuterStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059430][0m [Preferences:378] Missing key 'FillStartColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059468][0m [Preferences:378] Missing key 'FillEndColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059506][0m [Preferences:378] Missing key 'InnerStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059583][0m [Preferences:378] Missing key 'ItemPadding' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059623][0m [Preferences:378] Missing key 'IndicatorSize' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059679][0m [Preferences:378] Missing key 'UrgentBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059719][0m [Preferences:378] Missing key 'LaunchBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059758][0m [Preferences:378] Missing key 'FadeOpacity' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059797][0m [Preferences:378] Missing key 'ClickTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059835][0m [Preferences:378] Missing key 'UrgentBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059874][0m [Preferences:378] Missing key 'LaunchBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059912][0m [Preferences:378] Missing key 'ActiveTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059951][0m [Preferences:378] Missing key 'SlideTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.059989][0m [Preferences:378] Missing key 'FadeTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.060027][0m [Preferences:378] Missing key 'HideTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.060065][0m [Preferences:378] Missing key 'GlowSize' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.060103][0m [Preferences:378] Missing key 'GlowTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.060180][0m [Preferences:378] Missing key 'GlowPulseTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.060221][0m [Preferences:378] Missing key 'UrgentHueShift' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.060259][0m [Preferences:378] Missing key 'ItemMoveTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.060316][0m [Preferences:378] Missing key 'BadgeColor' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206445][0m [Preferences:192] '/usr/share/plank/themes/Matte/dock.theme' is read-only!
+[93m[WARN 02:27:16.206608][0m [Preferences:378] Missing key 'TopRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206649][0m [Preferences:378] Missing key 'BottomRoundness' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206687][0m [Preferences:378] Missing key 'LineWidth' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206724][0m [Preferences:378] Missing key 'OuterStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206760][0m [Preferences:378] Missing key 'FillStartColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206797][0m [Preferences:378] Missing key 'FillEndColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206833][0m [Preferences:378] Missing key 'InnerStrokeColor' for group 'PlankTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206905][0m [Preferences:378] Missing key 'ItemPadding' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206944][0m [Preferences:378] Missing key 'IndicatorSize' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.206997][0m [Preferences:378] Missing key 'UrgentBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207035][0m [Preferences:378] Missing key 'LaunchBounceHeight' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207072][0m [Preferences:378] Missing key 'FadeOpacity' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207109][0m [Preferences:378] Missing key 'ClickTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207146][0m [Preferences:378] Missing key 'UrgentBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207182][0m [Preferences:378] Missing key 'LaunchBounceTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207218][0m [Preferences:378] Missing key 'ActiveTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207255][0m [Preferences:378] Missing key 'SlideTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207326][0m [Preferences:378] Missing key 'FadeTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207365][0m [Preferences:378] Missing key 'HideTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207401][0m [Preferences:378] Missing key 'GlowSize' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207438][0m [Preferences:378] Missing key 'GlowTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207474][0m [Preferences:378] Missing key 'GlowPulseTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207511][0m [Preferences:378] Missing key 'UrgentHueShift' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207547][0m [Preferences:378] Missing key 'ItemMoveTime' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[93m[WARN 02:27:16.207601][0m [Preferences:378] Missing key 'BadgeColor' for group 'PlankDockTheme' in preferences file '/usr/share/plank/themes/Matte/dock.theme' - using default value
+[91m[CRITICAL 02:27:16.248993][0m [DockContainer:160] Element 'Plank' should be removed from its old DockContainer first.
+[93m[WARN 02:27:16.376176][0m Creating surface took WAY TOO LONG (71ms), enabled downscaling for this cache!
+[93m[WARN 02:27:16.446327][0m Creating surface took WAY TOO LONG (38ms), enabled downscaling for this cache!
+[91m[CRITICAL 02:27:22.853421][0m [DockWindow:298] Retry #1 update_size_and_position() to force requested values!
+[91m[CRITICAL 02:27:22.853727][0m [DockWindow:298] Retry #2 update_size_and_position() to force requested values!
+[93m[WARN 02:27:38.945824][0m [AbstractMain:42] Caught signal (15), exiting
