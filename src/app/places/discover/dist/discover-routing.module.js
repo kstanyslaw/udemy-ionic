@@ -13,14 +13,12 @@ var discover_page_1 = require("./discover.page");
 var routes = [
     {
         path: '',
-        component: discover_page_1.DiscoverPage,
-        children: [
-            {
-                path: ':placeId',
-                loadChildren: function () { return Promise.resolve().then(function () { return require('./place-detail/place-detail.module'); }).then(function (m) { return m.PlaceDetailPageModule; }); }
-            }
-        ]
+        component: discover_page_1.DiscoverPage
     },
+    {
+        path: ':placeId',
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./place-detail/place-detail.module'); }).then(function (m) { return m.PlaceDetailPageModule; }); }
+    }
 ];
 var DiscoverPageRoutingModule = /** @class */ (function () {
     function DiscoverPageRoutingModule() {
