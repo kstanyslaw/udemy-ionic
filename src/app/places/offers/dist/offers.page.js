@@ -13,7 +13,7 @@ var OffersPage = /** @class */ (function () {
         this.placesService = placesService;
     }
     OffersPage.prototype.ngOnInit = function () {
-        this.loadedPlaces = this.placesService.places;
+        this.offers = this.placesService.places;
     };
     OffersPage = __decorate([
         core_1.Component({

@@ -6,34 +6,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.PlaceDetailPage = void 0;
+exports.OfferBookingsPage = void 0;
 var core_1 = require("@angular/core");
-var PlaceDetailPage = /** @class */ (function () {
-    function PlaceDetailPage(navCtrl, route, placesService) {
-        this.navCtrl = navCtrl;
+var OfferBookingsPage = /** @class */ (function () {
+    function OfferBookingsPage(route, navCtrl, placesService) {
         this.route = route;
+        this.navCtrl = navCtrl;
         this.placesService = placesService;
     }
-    PlaceDetailPage.prototype.ngOnInit = function () {
+    OfferBookingsPage.prototype.ngOnInit = function () {
         var _this = this;
         this.route.paramMap.subscribe(function (paramMap) {
             if (!paramMap.has('placeId')) {
-                _this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
+                _this.navCtrl.navigateBack(['/', 'places', 'tabs', 'offers']);
                 return;
             }
             _this.place = _this.placesService.getPlace(paramMap.get('placeId'));
         });
     };
-    PlaceDetailPage.prototype.onBookPlace = function () {
-        this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
-    };
-    PlaceDetailPage = __decorate([
+    OfferBookingsPage = __decorate([
         core_1.Component({
-            selector: 'app-place-detail',
-            templateUrl: './place-detail.page.html',
-            styleUrls: ['./place-detail.page.scss']
+            selector: 'app-offer-bookings',
+            templateUrl: './offer-bookings.page.html',
+            styleUrls: ['./offer-bookings.page.scss']
         })
-    ], PlaceDetailPage);
-    return PlaceDetailPage;
+    ], OfferBookingsPage);
+    return OfferBookingsPage;
 }());
-exports.PlaceDetailPage = PlaceDetailPage;
+exports.OfferBookingsPage = OfferBookingsPage;
