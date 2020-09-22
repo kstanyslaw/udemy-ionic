@@ -9,10 +9,12 @@ exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar) {
+    function AppComponent(platform, splashScreen, statusBar, authService, router) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.authService = authService;
+        this.router = router;
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
@@ -23,6 +25,8 @@ var AppComponent = /** @class */ (function () {
         });
     };
     AppComponent.prototype.onLogout = function () {
+        this.authService.logout();
+        this.router.navigate(['/', 'auth']);
     };
     AppComponent = __decorate([
         core_1.Component({

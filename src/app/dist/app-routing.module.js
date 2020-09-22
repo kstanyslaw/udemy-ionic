@@ -9,6 +9,7 @@ exports.__esModule = true;
 exports.AppRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var auth_guard_1 = require("./auth/auth.guard");
 var routes = [
     {
         path: 'auth',
@@ -16,7 +17,8 @@ var routes = [
     },
     {
         path: 'places',
-        loadChildren: function () { return Promise.resolve().then(function () { return require('./places/places.module'); }).then(function (m) { return m.PlacesPageModule; }); }
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./places/places.module'); }).then(function (m) { return m.PlacesPageModule; }); },
+        canLoad: [auth_guard_1.AuthGuard]
     },
     {
         path: 'bookings',
