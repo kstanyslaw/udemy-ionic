@@ -13,22 +13,20 @@ var offers_page_1 = require("./offers.page");
 var routes = [
     {
         path: '',
-        component: offers_page_1.OffersPage,
-        children: [
-            {
-                path: 'new',
-                loadChildren: function () { return Promise.resolve().then(function () { return require('./new-offer/new-offer.module'); }).then(function (m) { return m.NewOfferPageModule; }); }
-            },
-            {
-                path: 'edit/:placeId',
-                loadChildren: function () { return Promise.resolve().then(function () { return require('./edit-offer/edit-offer.module'); }).then(function (m) { return m.EditOfferPageModule; }); }
-            },
-            {
-                path: ':placeId',
-                loadChildren: function () { return Promise.resolve().then(function () { return require('./offer-bookings/offer-bookings.module'); }).then(function (m) { return m.OfferBookingsPageModule; }); }
-            }
-        ]
+        component: offers_page_1.OffersPage
     },
+    {
+        path: 'new',
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./new-offer/new-offer.module'); }).then(function (m) { return m.NewOfferPageModule; }); }
+    },
+    {
+        path: 'edit/:placeId',
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./edit-offer/edit-offer.module'); }).then(function (m) { return m.EditOfferPageModule; }); }
+    },
+    {
+        path: ':placeId',
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./offer-bookings/offer-bookings.module'); }).then(function (m) { return m.OfferBookingsPageModule; }); }
+    }
 ];
 var OffersPageRoutingModule = /** @class */ (function () {
     function OffersPageRoutingModule() {
