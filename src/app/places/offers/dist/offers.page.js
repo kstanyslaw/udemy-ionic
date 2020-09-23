@@ -9,11 +9,16 @@ exports.__esModule = true;
 exports.OffersPage = void 0;
 var core_1 = require("@angular/core");
 var OffersPage = /** @class */ (function () {
-    function OffersPage(placesService) {
+    function OffersPage(placesService, router) {
         this.placesService = placesService;
+        this.router = router;
     }
     OffersPage.prototype.ngOnInit = function () {
         this.offers = this.placesService.places;
+    };
+    OffersPage.prototype.onEdit = function (offerId, slidingItem) {
+        slidingItem.close();
+        this.router.navigate(['/', 'places', 'tabs', 'offers', 'edit', offerId]);
     };
     OffersPage = __decorate([
         core_1.Component({
