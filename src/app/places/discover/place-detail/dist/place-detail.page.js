@@ -8,11 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.PlaceDetailPage = void 0;
 var core_1 = require("@angular/core");
+var create_booking_component_1 = require("src/app/bookings/create-booking/create-booking.component");
 var PlaceDetailPage = /** @class */ (function () {
-    function PlaceDetailPage(navCtrl, route, placesService) {
+    function PlaceDetailPage(navCtrl, route, placesService, modalController) {
         this.navCtrl = navCtrl;
         this.route = route;
         this.placesService = placesService;
+        this.modalController = modalController;
     }
     PlaceDetailPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -25,7 +27,19 @@ var PlaceDetailPage = /** @class */ (function () {
         });
     };
     PlaceDetailPage.prototype.onBookPlace = function () {
-        this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
+        // this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
+        this.modalController.create({
+            component: create_booking_component_1.CreateBookingComponent,
+            componentProps: { selectedPlace: this.place }
+        }).then(function (modalEl) {
+            modalEl.present();
+            return modalEl.onDidDismiss();
+        }).then(function (resultData) {
+            if (resultData.role === 'confirm') {
+                console.log('BOOKED!');
+            }
+            console.log(resultData);
+        });
     };
     PlaceDetailPage = __decorate([
         core_1.Component({
