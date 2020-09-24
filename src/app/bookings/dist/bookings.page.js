@@ -15,6 +15,10 @@ var BookingsPage = /** @class */ (function () {
     BookingsPage.prototype.ngOnInit = function () {
         this.loadedBookings = this.bookingService.bookings;
     };
+    BookingsPage.prototype.onCancelBooking = function (offerId, slidingEl) {
+        slidingEl.close();
+        // cancel booking by id
+    };
     BookingsPage = __decorate([
         core_1.Component({
             selector: 'app-bookings',
