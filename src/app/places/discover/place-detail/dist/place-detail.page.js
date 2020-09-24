@@ -10,11 +10,12 @@ exports.PlaceDetailPage = void 0;
 var core_1 = require("@angular/core");
 var create_booking_component_1 = require("src/app/bookings/create-booking/create-booking.component");
 var PlaceDetailPage = /** @class */ (function () {
-    function PlaceDetailPage(navCtrl, route, placesService, modalController) {
+    function PlaceDetailPage(navCtrl, route, placesService, modalController, actionSheetController) {
         this.navCtrl = navCtrl;
         this.route = route;
         this.placesService = placesService;
         this.modalController = modalController;
+        this.actionSheetController = actionSheetController;
     }
     PlaceDetailPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -27,7 +28,34 @@ var PlaceDetailPage = /** @class */ (function () {
         });
     };
     PlaceDetailPage.prototype.onBookPlace = function () {
+        var _this = this;
         // this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
+        this.actionSheetController.create({
+            header: 'Choose an Action',
+            buttons: [
+                {
+                    text: 'Select Date',
+                    handler: function () {
+                        _this.openBookingModal('select');
+                    }
+                },
+                {
+                    text: 'Random Date',
+                    handler: function () {
+                        _this.openBookingModal('random');
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                }
+            ]
+        }).then(function (actionSheetEl) {
+            actionSheetEl.present();
+        });
+    };
+    PlaceDetailPage.prototype.openBookingModal = function (mode) {
+        console.log(mode);
         this.modalController.create({
             component: create_booking_component_1.CreateBookingComponent,
             componentProps: { selectedPlace: this.place }
