@@ -15,6 +15,9 @@ var DiscoverPage = /** @class */ (function () {
     DiscoverPage.prototype.ngOnInit = function () {
         this.loadedPlaces = this.placesService.places;
     };
+    DiscoverPage.prototype.onFilterUpdate = function (event) {
+        console.log(event);
+    };
     DiscoverPage = __decorate([
         core_1.Component({
             selector: 'app-discover',
