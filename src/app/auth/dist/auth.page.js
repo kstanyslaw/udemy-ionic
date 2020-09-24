@@ -9,15 +9,26 @@ exports.__esModule = true;
 exports.AuthPage = void 0;
 var core_1 = require("@angular/core");
 var AuthPage = /** @class */ (function () {
-    function AuthPage(authService, router) {
+    function AuthPage(authService, router, loadingController) {
         this.authService = authService;
         this.router = router;
+        this.loadingController = loadingController;
+        this.isLoading = false;
     }
     AuthPage.prototype.ngOnInit = function () {
     };
     AuthPage.prototype.onLogin = function () {
+        var _this = this;
         this.authService.login();
-        this.router.navigate(['/', 'places', 'tabs', 'discover']);
+        this.isLoading = true;
+        this.loadingController.create({ keyboardClose: true, message: 'Loggin in...' }).then(function (loadingEl) {
+            loadingEl.present();
+            setTimeout(function () {
+                loadingEl.dismiss();
+                _this.isLoading = false;
+                _this.router.navigate(['/', 'places', 'tabs', 'discover']);
+            }, 1500);
+        });
     };
     AuthPage = __decorate([
         core_1.Component({
