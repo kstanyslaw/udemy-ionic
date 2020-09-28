@@ -10,7 +10,7 @@ exports.AuthService = void 0;
 var core_1 = require("@angular/core");
 var AuthService = /** @class */ (function () {
     function AuthService() {
-        this._userIsAuth = true;
+        this._userIsAuth = false;
     }
     Object.defineProperty(AuthService.prototype, "userIsAuth", {
         get: function () {

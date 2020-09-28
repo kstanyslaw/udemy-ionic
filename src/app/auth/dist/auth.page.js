@@ -14,6 +14,7 @@ var AuthPage = /** @class */ (function () {
         this.router = router;
         this.loadingController = loadingController;
         this.isLoading = false;
+        this.isLogin = true;
     }
     AuthPage.prototype.ngOnInit = function () {
     };
@@ -29,6 +30,20 @@ var AuthPage = /** @class */ (function () {
                 _this.router.navigate(['/', 'places', 'tabs', 'discover']);
             }, 1500);
         });
+    };
+    AuthPage.prototype.onSubmit = function (form) {
+        if (form.invalid) {
+            return;
+        }
+        var email = form.value.email;
+        var password = form.value.password;
+        if (this.isLogin) {
+        }
+        else {
+        }
+    };
+    AuthPage.prototype.onSwitchAuthMode = function () {
+        this.isLogin = !this.isLogin;
     };
     AuthPage = __decorate([
         core_1.Component({
