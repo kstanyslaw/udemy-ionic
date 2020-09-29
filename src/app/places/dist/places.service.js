@@ -30,9 +30,9 @@ var place_model_1 = require("./place.model");
 var PlacesService = /** @class */ (function () {
     function PlacesService() {
         this._places = [
-            new place_model_1.Place('p1', 'Manhattan Mansion', 'In the heart of New Yourk City', 'https://imgs.6sqft.com/wp-content/uploads/2014/06/21042534/Felix_Warburg_Mansion_007.jpg', 149.99),
-            new place_model_1.Place('p2', 'L\'Amour Toujours', 'A Romantic place in Paris', 'https://miro.medium.com/max/4096/1*t-nXIcaD3oP6CS4ydXV1xw.jpeg', 189.99),
-            new place_model_1.Place('p3', 'The Foggy Palace', 'Not your average city trip!', 'https://i.pinimg.com/originals/65/8f/77/658f77b9b527f89922ba996560a3e2b0.jpg', 99.99),
+            new place_model_1.Place('p1', 'Manhattan Mansion', 'In the heart of New Yourk City', 'https://imgs.6sqft.com/wp-content/uploads/2014/06/21042534/Felix_Warburg_Mansion_007.jpg', 149.99, new Date(), new Date('2021-09-01')),
+            new place_model_1.Place('p2', 'L\'Amour Toujours', 'A Romantic place in Paris', 'https://miro.medium.com/max/4096/1*t-nXIcaD3oP6CS4ydXV1xw.jpeg', 189.99, new Date(), new Date('2021-09-01')),
+            new place_model_1.Place('p3', 'The Foggy Palace', 'Not your average city trip!', 'https://i.pinimg.com/originals/65/8f/77/658f77b9b527f89922ba996560a3e2b0.jpg', 99.99, new Date(), new Date('2021-09-01')),
         ];
     }
     Object.defineProperty(PlacesService.prototype, "places", {

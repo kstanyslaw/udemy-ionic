@@ -62,20 +62,17 @@ export class PlaceDetailPage implements OnInit {
   }
   
   openBookingModal(mode: 'select' | 'random') {
-    console.log(mode);
 
     this.modalController.create({
       component: CreateBookingComponent,
-      componentProps: {selectedPlace: this.place}
+      componentProps: {selectedPlace: this.place, selectedMode: mode}
     }).then(modalEl => {
       modalEl.present();
       return modalEl.onDidDismiss();
     }).then(resultData => {
       if (resultData.role === 'confirm') {
-        console.log('BOOKED!');
-        
+        console.log(resultData);
       }
-      console.log(resultData);
     });
   }
 }

@@ -55,18 +55,16 @@ var PlaceDetailPage = /** @class */ (function () {
         });
     };
     PlaceDetailPage.prototype.openBookingModal = function (mode) {
-        console.log(mode);
         this.modalController.create({
             component: create_booking_component_1.CreateBookingComponent,
-            componentProps: { selectedPlace: this.place }
+            componentProps: { selectedPlace: this.place, selectedMode: mode }
         }).then(function (modalEl) {
             modalEl.present();
             return modalEl.onDidDismiss();
         }).then(function (resultData) {
             if (resultData.role === 'confirm') {
-                console.log('BOOKED!');
+                console.log(resultData);
             }
-            console.log(resultData);
         });
     };
     PlaceDetailPage = __decorate([
