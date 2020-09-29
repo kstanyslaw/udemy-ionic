@@ -9,14 +9,29 @@ exports.__esModule = true;
 exports.DiscoverPage = void 0;
 var core_1 = require("@angular/core");
 var DiscoverPage = /** @class */ (function () {
-    function DiscoverPage(placesService) {
+    function DiscoverPage(placesService, authService) {
         this.placesService = placesService;
+        this.authService = authService;
     }
     DiscoverPage.prototype.ngOnInit = function () {
-        this.loadedPlaces = this.placesService.places;
+        var _this = this;
+        this.placesSub = this.placesService.places.subscribe(function (places) {
+            _this.loadedPlaces = places;
+            _this.relevantPlaces = _this.loadedPlaces;
+        });
     };
     DiscoverPage.prototype.onFilterUpdate = function (event) {
+        var _this = this;
         console.log(event);
+        if (event.detail.value === 'all') {
+            this.relevantPlaces = this.loadedPlaces;
+        }
+        else {
+            this.relevantPlaces = this.loadedPlaces.filter(function (place) { return place.userId !== _this.authService.userId; });
+        }
+    };
+    DiscoverPage.prototype.ngOnDestroy = function () {
+        this.placesSub.unsubscribe();
     };
     DiscoverPage = __decorate([
         core_1.Component({

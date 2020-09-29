@@ -21,7 +21,9 @@ var OfferBookingsPage = /** @class */ (function () {
                 _this.navCtrl.navigateBack(['/', 'places', 'tabs', 'offers']);
                 return;
             }
-            _this.place = _this.placesService.getPlace(paramMap.get('placeId'));
+            _this.placesService.getPlace(paramMap.get('placeId')).subscribe(function (place) {
+                _this.place = place;
+            });
         });
     };
     OfferBookingsPage = __decorate([

@@ -12,9 +12,6 @@ var OfferItemComponent = /** @class */ (function () {
     function OfferItemComponent() {
     }
     OfferItemComponent.prototype.ngOnInit = function () { };
-    OfferItemComponent.prototype.getDummyDate = function () {
-        return new Date;
-    };
     __decorate([
         core_1.Input()
     ], OfferItemComponent.prototype, "offer");

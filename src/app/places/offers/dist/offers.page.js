@@ -14,11 +14,17 @@ var OffersPage = /** @class */ (function () {
         this.router = router;
     }
     OffersPage.prototype.ngOnInit = function () {
-        this.offers = this.placesService.places;
+        var _this = this;
+        this.placesSub = this.placesService.places.subscribe(function (places) {
+            _this.offers = places;
+        });
     };
     OffersPage.prototype.onEdit = function (offerId, slidingItem) {
         slidingItem.close();
         this.router.navigate(['/', 'places', 'tabs', 'offers', 'edit', offerId]);
+    };
+    OffersPage.prototype.ngOnDestroy = function () {
+        this.placesSub.unsubscribe();
     };
     OffersPage = __decorate([
         core_1.Component({

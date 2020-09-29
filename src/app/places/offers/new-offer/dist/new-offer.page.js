@@ -10,7 +10,10 @@ exports.NewOfferPage = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var NewOfferPage = /** @class */ (function () {
-    function NewOfferPage() {
+    function NewOfferPage(placesService, router, loadingController) {
+        this.placesService = placesService;
+        this.router = router;
+        this.loadingController = loadingController;
     }
     NewOfferPage.prototype.ngOnInit = function () {
         this.form = new forms_1.FormGroup({
@@ -22,7 +25,20 @@ var NewOfferPage = /** @class */ (function () {
         });
     };
     NewOfferPage.prototype.onCreateOffer = function () {
-        console.log(this.form);
+        var _this = this;
+        if (this.form.invalid) {
+            return;
+        }
+        this.loadingController.create({
+            message: 'Creating place...'
+        }).then(function (loadingEl) {
+            loadingEl.present();
+            _this.placesService.addPlace(_this.form.value.title, _this.form.value.description, +_this.form.value.price, new Date(_this.form.value.dateFrom), new Date(_this.form.value.dateTo)).subscribe(function () {
+                loadingEl.dismiss();
+                _this.form.reset();
+                _this.router.navigate(['/', 'places', 'tabs', 'offers']);
+            });
+        });
     };
     NewOfferPage = __decorate([
         core_1.Component({

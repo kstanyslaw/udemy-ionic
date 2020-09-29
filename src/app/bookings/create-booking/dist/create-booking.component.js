@@ -25,12 +25,12 @@ var CreateBookingComponent = /** @class */ (function () {
             return;
         }
         this.modalController.dismiss({
-            bookidngData: {
+            bookingData: {
                 firstName: this.form.value['first-name'],
                 lastName: this.form.value['last-name'],
-                guestNumber: this.form.value['guest-number'],
-                startDate: this.form.value['date-from'],
-                endDate: this.form.value['date-to']
+                guestNumber: +this.form.value['guest-number'],
+                startDate: new Date(this.form.value['date-from']),
+                endDate: new Date(this.form.value['date-to'])
             }
         }, 'confirm');
     };

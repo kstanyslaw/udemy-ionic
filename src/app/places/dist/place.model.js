@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.Place = void 0;
 var Place = /** @class */ (function () {
-    function Place(id, title, description, imageUrl, price, avaliableFrom, avaliableTo) {
+    function Place(id, title, description, imageUrl, price, avaliableFrom, avaliableTo, userId) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -10,6 +10,7 @@ var Place = /** @class */ (function () {
         this.price = price;
         this.avaliableFrom = avaliableFrom;
         this.avaliableTo = avaliableTo;
+        this.userId = userId;
     }
     return Place;
 }());
