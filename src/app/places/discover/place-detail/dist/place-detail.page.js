@@ -46,7 +46,7 @@ exports.PlaceDetailPage = void 0;
 var core_1 = require("@angular/core");
 var create_booking_component_1 = require("src/app/bookings/create-booking/create-booking.component");
 var PlaceDetailPage = /** @class */ (function () {
-    function PlaceDetailPage(navCtrl, route, router, placesService, modalController, actionSheetController, bookingService, loadingController, authService) {
+    function PlaceDetailPage(navCtrl, route, router, placesService, modalController, actionSheetController, bookingService, loadingController, authService, alertController) {
         this.navCtrl = navCtrl;
         this.route = route;
         this.router = router;
@@ -56,19 +56,44 @@ var PlaceDetailPage = /** @class */ (function () {
         this.bookingService = bookingService;
         this.loadingController = loadingController;
         this.authService = authService;
+        this.alertController = alertController;
         this.isBookable = false;
+        this.isLoading = false;
     }
     PlaceDetailPage.prototype.ngOnInit = function () {
         var _this = this;
+        this.isLoading = true;
         this.route.paramMap.subscribe(function (paramMap) {
             if (!paramMap.has('placeId')) {
                 _this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
+                _this.isLoading = false;
                 return;
             }
             _this.placeSub = _this.placesService.getPlace(paramMap.get('placeId')).subscribe(function (place) {
                 _this.place = place;
                 _this.isBookable = place.userId !== _this.authService.userId;
-            });
+                _this.isLoading = false;
+            }, function (error) { return __awaiter(_this, void 0, void 0, function () {
+                var alert;
+                var _this = this;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.alertController.create({
+                                header: 'An error occurred!',
+                                message: 'Place could not e fethced!',
+                                buttons: [{ text: 'OK', handler: function () {
+                                            _this.router.navigate(['/', 'places', 'tabs', 'discover']);
+                                        } }]
+                            })];
+                        case 1:
+                            alert = _a.sent();
+                            return [4 /*yield*/, alert.present()];
+                        case 2:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            }); });
         });
     };
     PlaceDetailPage.prototype.onBookPlace = function () {

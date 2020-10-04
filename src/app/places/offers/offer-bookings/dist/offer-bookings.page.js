@@ -13,6 +13,7 @@ var OfferBookingsPage = /** @class */ (function () {
         this.route = route;
         this.navCtrl = navCtrl;
         this.placesService = placesService;
+        this.isLoading = false;
     }
     OfferBookingsPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -21,8 +22,11 @@ var OfferBookingsPage = /** @class */ (function () {
                 _this.navCtrl.navigateBack(['/', 'places', 'tabs', 'offers']);
                 return;
             }
+            _this.isLoading = true;
+            _this.placeId = paramMap.get('placeId');
             _this.placesService.getPlace(paramMap.get('placeId')).subscribe(function (place) {
                 _this.place = place;
+                _this.isLoading = false;
             });
         });
     };

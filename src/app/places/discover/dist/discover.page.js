@@ -12,6 +12,7 @@ var DiscoverPage = /** @class */ (function () {
     function DiscoverPage(placesService, authService) {
         this.placesService = placesService;
         this.authService = authService;
+        this.isLoading = false;
     }
     DiscoverPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -20,9 +21,15 @@ var DiscoverPage = /** @class */ (function () {
             _this.relevantPlaces = _this.loadedPlaces;
         });
     };
+    DiscoverPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.isLoading = true;
+        this.placesService.fetchPlaces().subscribe(function () {
+            _this.isLoading = false;
+        });
+    };
     DiscoverPage.prototype.onFilterUpdate = function (event) {
         var _this = this;
-        console.log(event);
         if (event.detail.value === 'all') {
             this.relevantPlaces = this.loadedPlaces;
         }

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Place } from '../../place.model';
 import { PlacesService } from '../../places.service';
@@ -14,6 +15,8 @@ import { PlacesService } from '../../places.service';
 export class EditOfferPage implements OnInit, OnDestroy {
   editedOffer: Place;
   form: FormGroup;
+  isLoading = false;
+  placeId: string;
   private offerSub: Subscription;
 
   constructor(
@@ -21,7 +24,8 @@ export class EditOfferPage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private navCtrl: NavController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private alertController: AlertController
 ) { }
 
   ngOnInit() {
@@ -30,13 +34,29 @@ export class EditOfferPage implements OnInit, OnDestroy {
         this.navCtrl.navigateBack(['/', 'places', 'tabs', 'offers']);
         return;
       }
-      this.offerSub = this.placesService.getPlace(paramMap.get('placeId')).subscribe(place => {
-        this.editedOffer = place;
-        this.form = new FormGroup({
-          title: new FormControl(this.editedOffer.title, {updateOn: 'blur', validators: [Validators.required]}),
-          description: new FormControl(this.editedOffer.description, { updateOn: 'blur', validators: [Validators.required, Validators.maxLength(180)]})
-        });
-      });
+      this.isLoading = true;
+      this.placeId = paramMap.get('placeId');
+      this.offerSub = this.placesService.getPlace(paramMap.get('placeId')).subscribe(
+        place => {
+          this.editedOffer = place;
+          this.form = new FormGroup({
+            title: new FormControl(this.editedOffer.title, { updateOn: 'blur', validators: [Validators.required] }),
+            description: new FormControl(this.editedOffer.description, { updateOn: 'blur', validators: [Validators.required, Validators.maxLength(180)]})
+          });
+          this.isLoading = false;
+        },
+        async error => {
+          const alert = await this.alertController.create({
+            header: 'An error occurred!',
+            message: 'Place could not e fethced!',
+            buttons: [{text: 'OK', handler: () => {
+              this.router.navigate(['/', 'places', 'tabs', 'offers']);
+            }}]
+          });
+
+          await alert.present();
+        }
+      );
 
     })
   }

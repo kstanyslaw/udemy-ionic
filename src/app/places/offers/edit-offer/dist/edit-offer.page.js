@@ -46,12 +46,14 @@ exports.EditOfferPage = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var EditOfferPage = /** @class */ (function () {
-    function EditOfferPage(placesService, route, router, navCtrl, loadingController) {
+    function EditOfferPage(placesService, route, router, navCtrl, loadingController, alertController) {
         this.placesService = placesService;
         this.route = route;
         this.router = router;
         this.navCtrl = navCtrl;
         this.loadingController = loadingController;
+        this.alertController = alertController;
+        this.isLoading = false;
     }
     EditOfferPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -60,13 +62,36 @@ var EditOfferPage = /** @class */ (function () {
                 _this.navCtrl.navigateBack(['/', 'places', 'tabs', 'offers']);
                 return;
             }
+            _this.isLoading = true;
+            _this.placeId = paramMap.get('placeId');
             _this.offerSub = _this.placesService.getPlace(paramMap.get('placeId')).subscribe(function (place) {
                 _this.editedOffer = place;
                 _this.form = new forms_1.FormGroup({
                     title: new forms_1.FormControl(_this.editedOffer.title, { updateOn: 'blur', validators: [forms_1.Validators.required] }),
                     description: new forms_1.FormControl(_this.editedOffer.description, { updateOn: 'blur', validators: [forms_1.Validators.required, forms_1.Validators.maxLength(180)] })
                 });
-            });
+                _this.isLoading = false;
+            }, function (error) { return __awaiter(_this, void 0, void 0, function () {
+                var alert;
+                var _this = this;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.alertController.create({
+                                header: 'An error occurred!',
+                                message: 'Place could not e fethced!',
+                                buttons: [{ text: 'OK', handler: function () {
+                                            _this.router.navigate(['/', 'places', 'tabs', 'offers']);
+                                        } }]
+                            })];
+                        case 1:
+                            alert = _a.sent();
+                            return [4 /*yield*/, alert.present()];
+                        case 2:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            }); });
         });
     };
     EditOfferPage.prototype.onUpdateOffer = function () {

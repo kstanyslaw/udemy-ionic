@@ -11,6 +11,8 @@ import { PlacesService } from '../../places.service';
 })
 export class OfferBookingsPage implements OnInit {
   place: Place;
+  isLoading = false;
+  placeId: string;
 
   constructor(private route: ActivatedRoute, private navCtrl: NavController, private placesService: PlacesService) { }
 
@@ -20,8 +22,11 @@ export class OfferBookingsPage implements OnInit {
         this.navCtrl.navigateBack(['/', 'places', 'tabs', 'offers']);
         return;
       }
+      this.isLoading = true;
+      this.placeId = paramMap.get('placeId');
       this.placesService.getPlace(paramMap.get('placeId')).subscribe(place => {
         this.place = place;
+        this.isLoading = false;
       });
     });
   }

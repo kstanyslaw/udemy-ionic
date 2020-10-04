@@ -11,7 +11,7 @@ var core_1 = require("@angular/core");
 var AuthService = /** @class */ (function () {
     function AuthService() {
         this._userIsAuth = true;
-        this._userId = 'abc';
+        this._userId = 'xyz';
     }
     Object.defineProperty(AuthService.prototype, "userIsAuth", {
         get: function () {

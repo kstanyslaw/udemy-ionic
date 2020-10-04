@@ -12,12 +12,18 @@ var OffersPage = /** @class */ (function () {
     function OffersPage(placesService, router) {
         this.placesService = placesService;
         this.router = router;
+        this.isLoading = false;
     }
     OffersPage.prototype.ngOnInit = function () {
         var _this = this;
         this.placesSub = this.placesService.places.subscribe(function (places) {
             _this.offers = places;
         });
+    };
+    OffersPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.isLoading = true;
+        this.placesService.fetchPlaces().subscribe(function () { return _this.isLoading = false; });
     };
     OffersPage.prototype.onEdit = function (offerId, slidingItem) {
         slidingItem.close();

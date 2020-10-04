@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionSheetController, LoadingController, ModalController, NavController } from '@ionic/angular';
+import { ActionSheetController, AlertController, LoadingController, ModalController, NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { BookingService } from 'src/app/bookings/booking.service';
@@ -16,6 +16,7 @@ import { PlacesService } from '../../places.service';
 export class PlaceDetailPage implements OnInit, OnDestroy {
   place: Place;
   isBookable = false;
+  isLoading = false;
   private placeSub: Subscription;
 
   constructor(
@@ -27,19 +28,36 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
     private actionSheetController: ActionSheetController,
     private bookingService: BookingService,
     private loadingController: LoadingController,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.paramMap.subscribe(paramMap => {
       if (!paramMap.has('placeId')) {
         this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
+        this.isLoading = false;
         return;
       }
-      this.placeSub = this.placesService.getPlace(paramMap.get('placeId')).subscribe(place => {
-        this.place = place;
-        this.isBookable = place.userId !== this.authService.userId;
-      });
+      this.placeSub = this.placesService.getPlace(paramMap.get('placeId')).subscribe(
+        place => {
+          this.place = place;
+          this.isBookable = place.userId !== this.authService.userId;
+          this.isLoading = false;
+        },
+        async error => {
+          const alert = await this.alertController.create({
+            header: 'An error occurred!',
+            message: 'Place could not e fethced!',
+            buttons: [{text: 'OK', handler: () => {
+              this.router.navigate(['/', 'places', 'tabs', 'discover']);
+            }}]
+          });
+
+          await alert.present();
+        }
+      );
     })
   }
 

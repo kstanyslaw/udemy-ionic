@@ -48,11 +48,19 @@ var BookingsPage = /** @class */ (function () {
     function BookingsPage(bookingService, loadingController) {
         this.bookingService = bookingService;
         this.loadingController = loadingController;
+        this.isLoading = false;
     }
     BookingsPage.prototype.ngOnInit = function () {
         var _this = this;
         this.bookingSub = this.bookingService.bookings.subscribe(function (bookings) {
             _this.loadedBookings = bookings;
+        });
+    };
+    BookingsPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.isLoading = true;
+        this.bookingService.fetchBookings().subscribe(function () {
+            _this.isLoading = false;
         });
     };
     BookingsPage.prototype.onCancelBooking = function (bookingId, slidingEl) {
