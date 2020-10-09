@@ -5,6 +5,7 @@ import { Place } from './place.model';
 import { take, map, tap, delay, switchMap } from "rxjs/operators";
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { PlaceLocation } from './location.model';
 
 interface PlaceResponceData {
   id: string;
@@ -15,6 +16,7 @@ interface PlaceResponceData {
   userId: string;
   avaliableFrom: string;
   avaliableTo: string;
+  location: PlaceLocation;
 }
 
 @Injectable({
@@ -46,7 +48,8 @@ export class PlacesService {
                 resData[key].price,
                 new Date(resData[key].avaliableFrom),
                 new Date(resData[key].avaliableTo),
-                resData[key].userId
+                resData[key].userId,
+                resData[key].location
               ));
             }
           }
@@ -74,13 +77,14 @@ export class PlacesService {
             placeData.price,
             new Date(placeData.avaliableFrom),
             new Date(placeData.avaliableTo),
-            placeData.userId
+            placeData.userId,
+            placeData.location
           )
         })
       );
   } 
 
-  addPlace(title: string, description: string, price: number, dateFrom: Date, dateTo: Date) {
+  addPlace(title: string, description: string, price: number, dateFrom: Date, dateTo: Date, location: PlaceLocation) {
     let generatedId = 'string'
     const newPlace = new Place(
       null,
@@ -90,7 +94,8 @@ export class PlacesService {
       price,
       dateFrom,
       dateTo,
-      this.authService.userId
+      this.authService.userId,
+      location
     );
 
     return this.http
@@ -108,7 +113,7 @@ export class PlacesService {
     );
   }
 
-  updatePlace(placeId: string, title: string, description: string, imageUrl: string, price: number, dateFrom: Date, dateTo: Date) {
+  updatePlace(placeId: string, title: string, description: string, imageUrl: string, price: number, dateFrom: Date, dateTo: Date, location: PlaceLocation) {
     let updatedPlaces: Place[];
     return this.places.pipe(
       take(1),
@@ -132,7 +137,8 @@ export class PlacesService {
           price,
           dateFrom,
           dateTo,
-          this.authService.userId
+          this.authService.userId,
+          location
         );
         return this.http.put(environment.firebase + 'offered-places/' + placeId + '.json', {...updatedPlaces[updatedPlaceIndex], id: null});
       }),

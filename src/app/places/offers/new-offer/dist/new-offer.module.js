@@ -13,6 +13,7 @@ var forms_1 = require("@angular/forms");
 var angular_1 = require("@ionic/angular");
 var new_offer_routing_module_1 = require("./new-offer-routing.module");
 var new_offer_page_1 = require("./new-offer.page");
+var shared_module_1 = require("src/app/shared/shared.module");
 var NewOfferPageModule = /** @class */ (function () {
     function NewOfferPageModule() {
     }
@@ -23,7 +24,8 @@ var NewOfferPageModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 angular_1.IonicModule,
                 new_offer_routing_module_1.NewOfferPageRoutingModule,
-                forms_1.ReactiveFormsModule
+                forms_1.ReactiveFormsModule,
+                shared_module_1.SharedModule
             ],
             declarations: [new_offer_page_1.NewOfferPage]
         })

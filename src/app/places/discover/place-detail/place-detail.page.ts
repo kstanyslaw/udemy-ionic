@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { BookingService } from 'src/app/bookings/booking.service';
 import { CreateBookingComponent } from 'src/app/bookings/create-booking/create-booking.component';
+import { MapModalComponent } from 'src/app/shared/map-modal/map-modal.component';
 import { Place } from '../../place.model';
 import { PlacesService } from '../../places.service';
 
@@ -120,6 +121,19 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
         })
       }
     });
+  }
+
+  async onShowFullMap() {
+    const mapModalEl = await this.modalController.create({
+      component: MapModalComponent,
+      componentProps: {
+        center: {...this.place.location},
+        selectable: false,
+        closeButtonText: 'Close',
+        title: this.place.location.address
+      }
+    });
+    await mapModalEl.present();
   }
 
   ngOnDestroy() {

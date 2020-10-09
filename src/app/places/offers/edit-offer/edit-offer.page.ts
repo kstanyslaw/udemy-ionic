@@ -77,7 +77,8 @@ export class EditOfferPage implements OnInit, OnDestroy {
       this.editedOffer.imageUrl,
       this.editedOffer.price,
       this.editedOffer.avaliableFrom,
-      this.editedOffer.avaliableTo
+      this.editedOffer.avaliableTo,
+      this.editedOffer.location
     ).subscribe(() => {
       loadingEl.dismiss();
       this.form.reset();

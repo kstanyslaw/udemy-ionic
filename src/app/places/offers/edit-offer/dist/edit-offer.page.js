@@ -112,7 +112,7 @@ var EditOfferPage = /** @class */ (function () {
                         return [4 /*yield*/, loadingEl.present()];
                     case 2:
                         _a.sent();
-                        this.placesService.updatePlace(this.editedOffer.id, this.form.value.title, this.form.value.description, this.editedOffer.imageUrl, this.editedOffer.price, this.editedOffer.avaliableFrom, this.editedOffer.avaliableTo).subscribe(function () {
+                        this.placesService.updatePlace(this.editedOffer.id, this.form.value.title, this.form.value.description, this.editedOffer.imageUrl, this.editedOffer.price, this.editedOffer.avaliableFrom, this.editedOffer.avaliableTo, this.editedOffer.location).subscribe(function () {
                             loadingEl.dismiss();
                             _this.form.reset();
                             _this.router.navigate(['/', 'places', 'tabs', 'offers']);

@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,6 +56,7 @@ exports.__esModule = true;
 exports.PlaceDetailPage = void 0;
 var core_1 = require("@angular/core");
 var create_booking_component_1 = require("src/app/bookings/create-booking/create-booking.component");
+var map_modal_component_1 = require("src/app/shared/map-modal/map-modal.component");
 var PlaceDetailPage = /** @class */ (function () {
     function PlaceDetailPage(navCtrl, route, router, placesService, modalController, actionSheetController, bookingService, loadingController, authService, alertController) {
         this.navCtrl = navCtrl;
@@ -165,6 +177,30 @@ var PlaceDetailPage = /** @class */ (function () {
                     });
                 }); });
                 return [2 /*return*/];
+            });
+        });
+    };
+    PlaceDetailPage.prototype.onShowFullMap = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var mapModalEl;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalController.create({
+                            component: map_modal_component_1.MapModalComponent,
+                            componentProps: {
+                                center: __assign({}, this.place.location),
+                                selectable: false,
+                                closeButtonText: 'Close',
+                                title: this.place.location.address
+                            }
+                        })];
+                    case 1:
+                        mapModalEl = _a.sent();
+                        return [4 /*yield*/, mapModalEl.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

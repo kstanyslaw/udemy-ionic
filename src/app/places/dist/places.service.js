@@ -51,7 +51,7 @@ var PlacesService = /** @class */ (function () {
             var places = [];
             for (var key in resData) {
                 if (Object.prototype.hasOwnProperty.call(resData, key)) {
-                    places.push(new place_model_1.Place(key, resData[key].title, resData[key].description, resData[key].imageUrl, resData[key].price, new Date(resData[key].avaliableFrom), new Date(resData[key].avaliableTo), resData[key].userId));
+                    places.push(new place_model_1.Place(key, resData[key].title, resData[key].description, resData[key].imageUrl, resData[key].price, new Date(resData[key].avaliableFrom), new Date(resData[key].avaliableTo), resData[key].userId, resData[key].location));
                 }
             }
             return places;
@@ -66,13 +66,13 @@ var PlacesService = /** @class */ (function () {
         return this.http
             .get(environment_1.environment.firebase + 'offered-places/' + id + '.json')
             .pipe(operators_1.map(function (placeData) {
-            return new place_model_1.Place(id, placeData.title, placeData.description, placeData.imageUrl, placeData.price, new Date(placeData.avaliableFrom), new Date(placeData.avaliableTo), placeData.userId);
+            return new place_model_1.Place(id, placeData.title, placeData.description, placeData.imageUrl, placeData.price, new Date(placeData.avaliableFrom), new Date(placeData.avaliableTo), placeData.userId, placeData.location);
         }));
     };
-    PlacesService.prototype.addPlace = function (title, description, price, dateFrom, dateTo) {
+    PlacesService.prototype.addPlace = function (title, description, price, dateFrom, dateTo, location) {
         var _this = this;
         var generatedId = 'string';
-        var newPlace = new place_model_1.Place(null, title, description, 'https://www.visittirol.ru/images/hft6wwpj6ga-/f6dbf422437a38c29c9813d471bd05de.jpeg', price, dateFrom, dateTo, this.authService.userId);
+        var newPlace = new place_model_1.Place(null, title, description, 'https://www.visittirol.ru/images/hft6wwpj6ga-/f6dbf422437a38c29c9813d471bd05de.jpeg', price, dateFrom, dateTo, this.authService.userId, location);
         return this.http
             .post(environment_1.environment.firebase + 'offered-places.json', __assign(__assign({}, newPlace), { id: null }))
             .pipe(operators_1.switchMap(function (resData) {
@@ -83,7 +83,7 @@ var PlacesService = /** @class */ (function () {
             _this._places.next(places.concat(newPlace));
         }));
     };
-    PlacesService.prototype.updatePlace = function (placeId, title, description, imageUrl, price, dateFrom, dateTo) {
+    PlacesService.prototype.updatePlace = function (placeId, title, description, imageUrl, price, dateFrom, dateTo, location) {
         var _this = this;
         var updatedPlaces;
         return this.places.pipe(operators_1.take(1), operators_1.switchMap(function (places) {
@@ -96,7 +96,7 @@ var PlacesService = /** @class */ (function () {
         }), operators_1.switchMap(function (places) {
             var updatedPlaceIndex = places.findIndex(function (pl) { return pl.id === placeId; });
             updatedPlaces = __spreadArrays(places);
-            updatedPlaces[updatedPlaceIndex] = new place_model_1.Place(placeId, title, description, imageUrl, price, dateFrom, dateTo, _this.authService.userId);
+            updatedPlaces[updatedPlaceIndex] = new place_model_1.Place(placeId, title, description, imageUrl, price, dateFrom, dateTo, _this.authService.userId, location);
             return _this.http.put(environment_1.environment.firebase + 'offered-places/' + placeId + '.json', __assign(__assign({}, updatedPlaces[updatedPlaceIndex]), { id: null }));
         }), operators_1.tap(function () {
             _this._places.next(updatedPlaces);

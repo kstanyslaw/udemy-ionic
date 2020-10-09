@@ -21,8 +21,12 @@ var NewOfferPage = /** @class */ (function () {
             description: new forms_1.FormControl(null, { updateOn: 'blur', validators: [forms_1.Validators.required, forms_1.Validators.maxLength(180)] }),
             price: new forms_1.FormControl(null, { updateOn: 'blur', validators: [forms_1.Validators.required, forms_1.Validators.min(1)] }),
             dateFrom: new forms_1.FormControl(null, { updateOn: 'blur', validators: [forms_1.Validators.required] }),
-            dateTo: new forms_1.FormControl(null, { updateOn: 'blur', validators: [forms_1.Validators.required] })
+            dateTo: new forms_1.FormControl(null, { updateOn: 'blur', validators: [forms_1.Validators.required] }),
+            location: new forms_1.FormControl(null, { validators: forms_1.Validators.required })
         });
+    };
+    NewOfferPage.prototype.onLocationPicked = function (location) {
+        this.form.patchValue({ location: location });
     };
     NewOfferPage.prototype.onCreateOffer = function () {
         var _this = this;
@@ -33,7 +37,7 @@ var NewOfferPage = /** @class */ (function () {
             message: 'Creating place...'
         }).then(function (loadingEl) {
             loadingEl.present();
-            _this.placesService.addPlace(_this.form.value.title, _this.form.value.description, +_this.form.value.price, new Date(_this.form.value.dateFrom), new Date(_this.form.value.dateTo)).subscribe(function () {
+            _this.placesService.addPlace(_this.form.value.title, _this.form.value.description, +_this.form.value.price, new Date(_this.form.value.dateFrom), new Date(_this.form.value.dateTo), _this.form.value.location).subscribe(function () {
                 loadingEl.dismiss();
                 _this.form.reset();
                 _this.router.navigate(['/', 'places', 'tabs', 'offers']);

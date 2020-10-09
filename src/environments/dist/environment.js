@@ -6,7 +6,8 @@ exports.__esModule = true;
 exports.environment = void 0;
 exports.environment = {
     production: false,
-    firebase: 'https://ionic-angular-course-14586.firebaseio.com/'
+    firebase: 'https://ionic-angular-course-14586.firebaseio.com/',
+    maps_API_KEY: 'AIzaSyClK9JpYbKH0aMyzDzKaPPgmz9qgauBpQg'
 };
 /*
  * For easier debugging in development mode, you can import the following file

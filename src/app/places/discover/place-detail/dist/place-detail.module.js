@@ -14,6 +14,7 @@ var angular_1 = require("@ionic/angular");
 var place_detail_routing_module_1 = require("./place-detail-routing.module");
 var place_detail_page_1 = require("./place-detail.page");
 var create_booking_component_1 = require("src/app/bookings/create-booking/create-booking.component");
+var shared_module_1 = require("src/app/shared/shared.module");
 var PlaceDetailPageModule = /** @class */ (function () {
     function PlaceDetailPageModule() {
     }
@@ -23,7 +24,8 @@ var PlaceDetailPageModule = /** @class */ (function () {
                 common_1.CommonModule,
                 forms_1.FormsModule,
                 angular_1.IonicModule,
-                place_detail_routing_module_1.PlaceDetailPageRoutingModule
+                place_detail_routing_module_1.PlaceDetailPageRoutingModule,
+                shared_module_1.SharedModule
             ],
             declarations: [
                 place_detail_page_1.PlaceDetailPage,

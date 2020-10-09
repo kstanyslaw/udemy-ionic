@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  firebase: 'https://ionic-angular-course-14586.firebaseio.com/'
+  firebase: 'https://ionic-angular-course-14586.firebaseio.com/',
+  maps_API_KEY: 'AIzaSyClK9JpYbKH0aMyzDzKaPPgmz9qgauBpQg'
 };
 
 /*
