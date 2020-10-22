@@ -12,6 +12,7 @@ var common_1 = require("@angular/common");
 var location_picker_component_1 = require("./pickers/location-picker/location-picker.component");
 var map_modal_component_1 = require("./map-modal/map-modal.component");
 var angular_1 = require("@ionic/angular");
+var image_picker_component_1 = require("./pickers/image-picker/image-picker.component");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -19,7 +20,8 @@ var SharedModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 location_picker_component_1.LocationPickerComponent,
-                map_modal_component_1.MapModalComponent
+                map_modal_component_1.MapModalComponent,
+                image_picker_component_1.ImagePickerComponent
             ],
             imports: [
                 common_1.CommonModule,
@@ -27,7 +29,8 @@ var SharedModule = /** @class */ (function () {
             ],
             exports: [
                 location_picker_component_1.LocationPickerComponent,
-                map_modal_component_1.MapModalComponent
+                map_modal_component_1.MapModalComponent,
+                image_picker_component_1.ImagePickerComponent
             ],
             entryComponents: [
                 map_modal_component_1.MapModalComponent

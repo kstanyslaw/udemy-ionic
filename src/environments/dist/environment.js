@@ -7,6 +7,8 @@ exports.environment = void 0;
 exports.environment = {
     production: false,
     firebase: 'https://ionic-angular-course-14586.firebaseio.com/',
+    firebase_cloud_function: 'https://us-central1-ionic-angular-course-14586.cloudfunctions.net/storeImage',
+    firebase_project_ID: 'ionic-angular-course-14586',
     maps_API_KEY: 'AIzaSyClK9JpYbKH0aMyzDzKaPPgmz9qgauBpQg'
 };
 /*

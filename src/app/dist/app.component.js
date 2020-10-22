@@ -8,20 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
+var core_2 = require("@capacitor/core");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, authService, router) {
+    function AppComponent(platform, authService, router) {
         this.platform = platform;
-        this.splashScreen = splashScreen;
-        this.statusBar = statusBar;
         this.authService = authService;
         this.router = router;
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
-        var _this = this;
         this.platform.ready().then(function () {
-            _this.statusBar.styleDefault();
-            _this.splashScreen.hide();
+            if (core_2.Capacitor.isPluginAvailable('SplashScreen')) {
+                core_2.Plugins.SplashScreen.hide();
+            }
         });
     };
     AppComponent.prototype.onLogout = function () {

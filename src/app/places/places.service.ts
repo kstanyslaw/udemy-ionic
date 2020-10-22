@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Place } from './place.model';
-import { take, map, tap, delay, switchMap } from "rxjs/operators";
+import { take, map, tap, switchMap } from "rxjs/operators";
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { PlaceLocation } from './location.model';
@@ -82,15 +82,30 @@ export class PlacesService {
           )
         })
       );
-  } 
+  }
 
-  addPlace(title: string, description: string, price: number, dateFrom: Date, dateTo: Date, location: PlaceLocation) {
-    let generatedId = 'string'
+  uploadImage(image: File) {
+    console.log(image);
+    const uploadData = new FormData();
+    uploadData.append('image', image);
+    return this.http.post<{imageUrl: string, imagePath: string}>(environment.firebase_cloud_function, uploadData);
+  }
+
+  addPlace(
+    title: string,
+    description: string,
+    price: number,
+    dateFrom: Date,
+    dateTo: Date,
+    location: PlaceLocation,
+    imageUrl: string
+  ) {
+    let generatedId: string;
     const newPlace = new Place(
-      null,
+      Math.random().toString(),
       title,
       description,
-      'https://www.visittirol.ru/images/hft6wwpj6ga-/f6dbf422437a38c29c9813d471bd05de.jpeg',
+      imageUrl,
       price,
       dateFrom,
       dateTo,

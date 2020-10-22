@@ -69,10 +69,16 @@ var PlacesService = /** @class */ (function () {
             return new place_model_1.Place(id, placeData.title, placeData.description, placeData.imageUrl, placeData.price, new Date(placeData.avaliableFrom), new Date(placeData.avaliableTo), placeData.userId, placeData.location);
         }));
     };
-    PlacesService.prototype.addPlace = function (title, description, price, dateFrom, dateTo, location) {
+    PlacesService.prototype.uploadImage = function (image) {
+        console.log(image);
+        var uploadData = new FormData();
+        uploadData.append('image', image);
+        return this.http.post(environment_1.environment.firebase_cloud_function, uploadData);
+    };
+    PlacesService.prototype.addPlace = function (title, description, price, dateFrom, dateTo, location, imageUrl) {
         var _this = this;
-        var generatedId = 'string';
-        var newPlace = new place_model_1.Place(null, title, description, 'https://www.visittirol.ru/images/hft6wwpj6ga-/f6dbf422437a38c29c9813d471bd05de.jpeg', price, dateFrom, dateTo, this.authService.userId, location);
+        var generatedId;
+        var newPlace = new place_model_1.Place(Math.random().toString(), title, description, imageUrl, price, dateFrom, dateTo, this.authService.userId, location);
         return this.http
             .post(environment_1.environment.firebase + 'offered-places.json', __assign(__assign({}, newPlace), { id: null }))
             .pipe(operators_1.switchMap(function (resData) {

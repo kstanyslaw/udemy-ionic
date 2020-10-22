@@ -48,50 +48,127 @@ var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
 var environment_1 = require("src/environments/environment");
 var map_modal_component_1 = require("../../map-modal/map-modal.component");
+var core_2 = require("@capacitor/core");
 var LocationPickerComponent = /** @class */ (function () {
-    function LocationPickerComponent(modalController, http) {
+    function LocationPickerComponent(modalController, http, actionSheetController, alertController) {
         this.modalController = modalController;
         this.http = http;
+        this.actionSheetController = actionSheetController;
+        this.alertController = alertController;
         this.locationPick = new core_1.EventEmitter();
+        this.showPreview = false;
         this.selectedLocationImage = null;
         this.isLoading = false;
     }
     LocationPickerComponent.prototype.ngOnInit = function () { };
     LocationPickerComponent.prototype.onPickLocation = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var modalEl, data, pickedLocation;
+            var actionSheet;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.isLoading = true;
-                        return [4 /*yield*/, this.modalController.create({ component: map_modal_component_1.MapModalComponent })];
+                        return [4 /*yield*/, this.actionSheetController.create({
+                                header: 'Please choose',
+                                buttons: [
+                                    { text: 'Auto-Locate', handler: function () { _this.locateUser(); } },
+                                    { text: 'Pick on Map', handler: function () { _this.openMap(); } },
+                                    { text: 'Cancel', role: 'cancel', handler: function () { _this.isLoading = false; } }
+                                ]
+                            })];
+                    case 1:
+                        actionSheet = _a.sent();
+                        return [4 /*yield*/, actionSheet.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LocationPickerComponent.prototype.locateUser = function () {
+        var _this = this;
+        if (!core_2.Capacitor.isPluginAvailable('Geolocation')) {
+            this.showLocationErrorAlert();
+            return;
+        }
+        core_2.Plugins.Geolocation
+            .getCurrentPosition()
+            .then(function (geoPosition) {
+            var coordinates = {
+                lat: geoPosition.coords.latitude,
+                lng: geoPosition.coords.longitude
+            };
+            _this.createPlace(coordinates.lat, coordinates.lng);
+        })["catch"](function (err) {
+            _this.isLoading = false;
+            _this.showLocationErrorAlert();
+        });
+    };
+    LocationPickerComponent.prototype.showLocationErrorAlert = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var locationAlert;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Could not fetch location',
+                            message: 'Please use the map to pick location!',
+                            buttons: ['OK']
+                        })];
+                    case 1:
+                        locationAlert = _a.sent();
+                        return [4 /*yield*/, locationAlert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LocationPickerComponent.prototype.createPlace = function (lat, lng) {
+        var _this = this;
+        var pickedLocation = {
+            lat: lat,
+            lng: lng,
+            address: null,
+            staticMapImageUrl: null
+        };
+        this.getAdress(lat, lng)
+            .pipe(operators_1.switchMap(function (address) {
+            pickedLocation.address = address;
+            return rxjs_1.of(_this.getMapImage(pickedLocation.lat, pickedLocation.lng, 14));
+        }))
+            .subscribe(function (staticMapImageUrl) {
+            pickedLocation.staticMapImageUrl = staticMapImageUrl;
+            _this.selectedLocationImage = staticMapImageUrl;
+            _this.isLoading = false;
+            _this.locationPick.emit(pickedLocation);
+        });
+    };
+    LocationPickerComponent.prototype.openMap = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var modalEl, data, coordinates;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalController.create({ component: map_modal_component_1.MapModalComponent })];
                     case 1:
                         modalEl = _a.sent();
-                        modalEl.present();
-                        return [4 /*yield*/, modalEl.onDidDismiss()];
+                        return [4 /*yield*/, modalEl.present()];
                     case 2:
+                        _a.sent();
+                        return [4 /*yield*/, modalEl.onDidDismiss()];
+                    case 3:
                         data = (_a.sent()).data;
                         if (!data) {
                             this.isLoading = false;
                             return [2 /*return*/];
                         }
-                        pickedLocation = {
+                        coordinates = {
                             lat: data.lat,
-                            lng: data.lng,
-                            address: null,
-                            staticMapImageUrl: null
+                            lng: data.lng
                         };
-                        this.getAdress(data.lat, data.lng).pipe(operators_1.switchMap(function (address) {
-                            pickedLocation.address = address;
-                            return rxjs_1.of(_this.getMapImage(pickedLocation.lat, pickedLocation.lng, 14));
-                        }))
-                            .subscribe(function (staticMapImageUrl) {
-                            pickedLocation.staticMapImageUrl = staticMapImageUrl;
-                            _this.selectedLocationImage = staticMapImageUrl;
-                            _this.isLoading = false;
-                            _this.locationPick.emit(pickedLocation);
-                        });
+                        this.createPlace(coordinates.lat, coordinates.lng);
                         return [2 /*return*/];
                 }
             });
@@ -113,6 +190,9 @@ var LocationPickerComponent = /** @class */ (function () {
     __decorate([
         core_1.Output()
     ], LocationPickerComponent.prototype, "locationPick");
+    __decorate([
+        core_1.Input()
+    ], LocationPickerComponent.prototype, "showPreview");
     LocationPickerComponent = __decorate([
         core_1.Component({
             selector: 'app-location-picker',
