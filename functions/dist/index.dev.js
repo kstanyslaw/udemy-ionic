@@ -16,11 +16,16 @@ var fs = require('fs');
 
 var uuid = require('uuid/v4');
 
+var fbAdmin = require('firebase-admin');
+
 var _require = require('@google-cloud/storage'),
     Storage = _require.Storage;
 
 var storage = new Storage({
   projectId: 'ionic-angular-course-14586'
+});
+fbAdmin.initializeApp({
+  credential: fbAdmin.credential.cert(require('./ionic-app.json'))
 });
 exports.storeImage = functions.https.onRequest(function (req, res) {
   return cors(req, res, function () {
@@ -30,6 +35,13 @@ exports.storeImage = functions.https.onRequest(function (req, res) {
       });
     }
 
+    if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) {
+      return res.status(401).json({
+        error: 'Unauthorized!'
+      });
+    }
+
+    var idToken = req.headers.authorization.split('Bearer ')[1];
     var busboy = new Busboy({
       headers: req.headers
     });
@@ -55,16 +67,18 @@ exports.storeImage = functions.https.onRequest(function (req, res) {
         imagePath = oldImagePath;
       }
 
-      console.log(uploadData.type);
-      return storage.bucket('ionic-angular-course-14586.appspot.com').upload(uploadData.filePath, {
-        uploadType: 'media',
-        destination: imagePath,
-        metadata: {
+      return fbAdmin.auth().verifyIdToken(idToken).then(function (decodedToken) {
+        console.log(uploadData.type);
+        return storage.bucket('ionic-angular-course-14586.appspot.com').upload(uploadData.filePath, {
+          uploadType: 'media',
+          destination: imagePath,
           metadata: {
-            contentType: uploadData.type,
-            firebaseStorageDownloadTokens: id
+            metadata: {
+              contentType: uploadData.type,
+              firebaseStorageDownloadTokens: id
+            }
           }
-        }
+        });
       }).then(function () {
         return res.status(201).json({
           imageUrl: 'https://firebasestorage.googleapis.com/v0/b/' + storage.bucket('ionic-angular-course-14586.appspot.com').name + '/o/' + encodeURIComponent(imagePath) + '?alt=media&token=' + id,

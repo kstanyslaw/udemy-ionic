@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.DiscoverPage = void 0;
 var core_1 = require("@angular/core");
+var operators_1 = require("rxjs/operators");
 var DiscoverPage = /** @class */ (function () {
     function DiscoverPage(placesService, authService) {
         this.placesService = placesService;
@@ -30,12 +31,14 @@ var DiscoverPage = /** @class */ (function () {
     };
     DiscoverPage.prototype.onFilterUpdate = function (event) {
         var _this = this;
-        if (event.detail.value === 'all') {
-            this.relevantPlaces = this.loadedPlaces;
-        }
-        else {
-            this.relevantPlaces = this.loadedPlaces.filter(function (place) { return place.userId !== _this.authService.userId; });
-        }
+        this.authService.userId.pipe(operators_1.take(1)).subscribe(function (userId) {
+            if (event.detail.value === 'all') {
+                _this.relevantPlaces = _this.loadedPlaces;
+            }
+            else {
+                _this.relevantPlaces = _this.loadedPlaces.filter(function (place) { return place.userId !== userId; });
+            }
+        });
     };
     DiscoverPage.prototype.ngOnDestroy = function () {
         this.placesSub.unsubscribe();

@@ -22,7 +22,8 @@ var routes = [
     },
     {
         path: 'bookings',
-        loadChildren: function () { return Promise.resolve().then(function () { return require('./bookings/bookings.module'); }).then(function (m) { return m.BookingsPageModule; }); }
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./bookings/bookings.module'); }).then(function (m) { return m.BookingsPageModule; }); },
+        canLoad: [auth_guard_1.AuthGuard]
     },
     {
         path: '',

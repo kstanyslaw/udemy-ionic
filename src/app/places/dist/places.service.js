@@ -45,9 +45,9 @@ var PlacesService = /** @class */ (function () {
     });
     PlacesService.prototype.fetchPlaces = function () {
         var _this = this;
-        return this.http
-            .get(environment_1.environment.firebase + 'offered-places.json')
-            .pipe(operators_1.map(function (resData) {
+        return this.authService.token.pipe(operators_1.take(1), operators_1.switchMap(function (token) {
+            return _this.http.get(environment_1.environment.firebase + 'offered-places.json' + ("?auth=" + token));
+        }), operators_1.map(function (resData) {
             var places = [];
             for (var key in resData) {
                 if (Object.prototype.hasOwnProperty.call(resData, key)) {
@@ -60,28 +60,37 @@ var PlacesService = /** @class */ (function () {
         }));
     };
     PlacesService.prototype.getPlace = function (id) {
-        // return this.places.pipe(take(1), map(places => {
-        //   return {...places.find(p => p.id === id)};
-        // }));
-        return this.http
-            .get(environment_1.environment.firebase + 'offered-places/' + id + '.json')
-            .pipe(operators_1.map(function (placeData) {
+        var _this = this;
+        return this.authService.token.pipe(operators_1.take(1), operators_1.switchMap(function (token) {
+            return _this.http.get(environment_1.environment.firebase + 'offered-places/' + id + '.json' + ("?auth=" + token));
+        }), operators_1.map(function (placeData) {
             return new place_model_1.Place(id, placeData.title, placeData.description, placeData.imageUrl, placeData.price, new Date(placeData.avaliableFrom), new Date(placeData.avaliableTo), placeData.userId, placeData.location);
         }));
     };
     PlacesService.prototype.uploadImage = function (image) {
+        var _this = this;
         console.log(image);
         var uploadData = new FormData();
         uploadData.append('image', image);
-        return this.http.post(environment_1.environment.firebase_cloud_function, uploadData);
+        return this.authService.token.pipe(operators_1.take(1), operators_1.switchMap(function (token) {
+            return _this.http.post(environment_1.environment.firebase_cloud_function, uploadData, { headers: { Authorization: "Bearer " + token } });
+        }));
     };
     PlacesService.prototype.addPlace = function (title, description, price, dateFrom, dateTo, location, imageUrl) {
         var _this = this;
         var generatedId;
-        var newPlace = new place_model_1.Place(Math.random().toString(), title, description, imageUrl, price, dateFrom, dateTo, this.authService.userId, location);
-        return this.http
-            .post(environment_1.environment.firebase + 'offered-places.json', __assign(__assign({}, newPlace), { id: null }))
-            .pipe(operators_1.switchMap(function (resData) {
+        var newPlace;
+        var fetchedUserId;
+        return this.authService.userId.pipe(operators_1.take(1), operators_1.switchMap(function (userId) {
+            if (!userId) {
+                throw new Error("Found no user!");
+            }
+            fetchedUserId = userId;
+            return _this.authService.token;
+        }), operators_1.take(1), operators_1.switchMap(function (token) {
+            newPlace = new place_model_1.Place(Math.random().toString(), title, description, imageUrl, price, dateFrom, dateTo, fetchedUserId, location);
+            return _this.http.post(environment_1.environment.firebase + 'offered-places.json' + ("?auth=" + token), __assign(__assign({}, newPlace), { id: null }));
+        }), operators_1.switchMap(function (resData) {
             generatedId = resData.name;
             return _this.places;
         }), operators_1.take(1), operators_1.tap(function (places) {
@@ -92,7 +101,18 @@ var PlacesService = /** @class */ (function () {
     PlacesService.prototype.updatePlace = function (placeId, title, description, imageUrl, price, dateFrom, dateTo, location) {
         var _this = this;
         var updatedPlaces;
-        return this.places.pipe(operators_1.take(1), operators_1.switchMap(function (places) {
+        var fetchedUserId;
+        var userToken;
+        return this.authService.token.pipe(operators_1.take(1), operators_1.switchMap(function (token) {
+            userToken = token;
+            return _this.authService.userId;
+        }), operators_1.take(1), operators_1.switchMap(function (userId) {
+            if (!userId) {
+                throw new Error("No user found!");
+            }
+            fetchedUserId = userId;
+            return _this.places;
+        }), operators_1.take(1), operators_1.switchMap(function (places) {
             if (!places || places.length <= 0) {
                 return _this.fetchPlaces();
             }
@@ -102,8 +122,8 @@ var PlacesService = /** @class */ (function () {
         }), operators_1.switchMap(function (places) {
             var updatedPlaceIndex = places.findIndex(function (pl) { return pl.id === placeId; });
             updatedPlaces = __spreadArrays(places);
-            updatedPlaces[updatedPlaceIndex] = new place_model_1.Place(placeId, title, description, imageUrl, price, dateFrom, dateTo, _this.authService.userId, location);
-            return _this.http.put(environment_1.environment.firebase + 'offered-places/' + placeId + '.json', __assign(__assign({}, updatedPlaces[updatedPlaceIndex]), { id: null }));
+            updatedPlaces[updatedPlaceIndex] = new place_model_1.Place(placeId, title, description, imageUrl, price, dateFrom, dateTo, fetchedUserId, location);
+            return _this.http.put(environment_1.environment.firebase + 'offered-places/' + placeId + '.json' + ("?auth=" + userToken), __assign(__assign({}, updatedPlaces[updatedPlaceIndex]), { id: null }));
         }), operators_1.tap(function () {
             _this._places.next(updatedPlaces);
         }));

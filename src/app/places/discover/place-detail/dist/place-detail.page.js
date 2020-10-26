@@ -55,6 +55,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.PlaceDetailPage = void 0;
 var core_1 = require("@angular/core");
+var operators_1 = require("rxjs/operators");
 var create_booking_component_1 = require("src/app/bookings/create-booking/create-booking.component");
 var map_modal_component_1 = require("src/app/shared/map-modal/map-modal.component");
 var PlaceDetailPage = /** @class */ (function () {
@@ -75,15 +76,23 @@ var PlaceDetailPage = /** @class */ (function () {
     PlaceDetailPage.prototype.ngOnInit = function () {
         var _this = this;
         this.isLoading = true;
-        this.route.paramMap.subscribe(function (paramMap) {
+        this.placeSub = this.route.paramMap.subscribe(function (paramMap) {
             if (!paramMap.has('placeId')) {
                 _this.navCtrl.navigateBack(['/', 'places', 'tabs', 'discover']);
                 _this.isLoading = false;
                 return;
             }
-            _this.placeSub = _this.placesService.getPlace(paramMap.get('placeId')).subscribe(function (place) {
+            var fetchedUserId;
+            _this.authService.userId.pipe(operators_1.take(1), operators_1.switchMap(function (userId) {
+                if (!userId) {
+                    throw new Error('Found no user!');
+                }
+                fetchedUserId = userId;
+                return _this.placesService.getPlace(paramMap.get('placeId'));
+            }))
+                .subscribe(function (place) {
                 _this.place = place;
-                _this.isBookable = place.userId !== _this.authService.userId;
+                _this.isBookable = place.userId !== fetchedUserId;
                 _this.isLoading = false;
             }, function (error) { return __awaiter(_this, void 0, void 0, function () {
                 var alert;

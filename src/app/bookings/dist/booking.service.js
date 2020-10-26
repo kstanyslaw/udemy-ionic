@@ -38,11 +38,21 @@ var BookingService = /** @class */ (function () {
     });
     BookingService.prototype.addBooking = function (placeId, placeTitle, placeImage, firstName, lastMane, guestNumber, dateFrom, dateTo) {
         var _this = this;
-        var newBooking = new booking_model_1.Booking(Math.random().toString(), placeId, this.authService.userId, placeTitle, placeImage, guestNumber, firstName, lastMane, dateFrom, dateTo);
-        return this.http
-            .post(environment_1.environment.firebase + 'bookings.json', __assign(__assign({}, newBooking), { id: null }))
-            .pipe(operators_1.switchMap(function (resData) {
-            newBooking.id = resData.name;
+        var generatedId;
+        var newBooking;
+        var fetchedUserId;
+        return this.authService.userId
+            .pipe(operators_1.take(1), operators_1.switchMap(function (userId) {
+            if (!userId) {
+                throw new Error('No user ID found!');
+            }
+            fetchedUserId = userId;
+            return _this.authService.token;
+        }), operators_1.take(1), operators_1.switchMap(function (token) {
+            newBooking = new booking_model_1.Booking(Math.random().toString(), placeId, fetchedUserId, placeTitle, placeImage, guestNumber, firstName, lastMane, dateFrom, dateTo);
+            return _this.http.post(environment_1.environment.firebase + 'bookings.json' + ("?auth=" + token), __assign(__assign({}, newBooking), { id: null }));
+        }), operators_1.switchMap(function (resData) {
+            generatedId = resData.name;
             return _this.bookings;
         }), operators_1.take(1), operators_1.tap(function (bookings) {
             return _this._bookings.next(bookings.concat(newBooking));
@@ -50,8 +60,9 @@ var BookingService = /** @class */ (function () {
     };
     BookingService.prototype.cancelBooking = function (bookingId) {
         var _this = this;
-        return this.http["delete"](environment_1.environment.firebase + 'bookings/' + (bookingId + ".json"))
-            .pipe(operators_1.switchMap(function () {
+        return this.authService.token.pipe(operators_1.take(1), operators_1.switchMap(function (token) {
+            return _this.http["delete"](environment_1.environment.firebase + 'bookings/' + (bookingId + ".json") + ("?auth=" + token));
+        }), operators_1.take(1), operators_1.switchMap(function () {
             return _this.bookings;
         }), operators_1.take(1), operators_1.tap(function (bookings) {
             return _this._bookings.next(bookings.filter(function (b) { return b.id !== bookingId; }));
@@ -59,9 +70,16 @@ var BookingService = /** @class */ (function () {
     };
     BookingService.prototype.fetchBookings = function () {
         var _this = this;
-        return this.http
-            .get(environment_1.environment.firebase + ("bookings.json?orderBy=\"userId\"&equalTo=\"" + this.authService.userId + "\""))
-            .pipe(operators_1.map(function (bookingData) {
+        var fetchedUserId;
+        return this.authService.userId.pipe(operators_1.take(1), operators_1.switchMap(function (userId) {
+            if (!userId) {
+                throw new Error("No user found!");
+            }
+            fetchedUserId = userId;
+            return _this.authService.token;
+        }), operators_1.take(1), operators_1.switchMap(function (token) {
+            return _this.http.get(environment_1.environment.firebase + ("bookings.json?orderBy=\"userId\"&equalTo=\"" + fetchedUserId + "\"") + ("&auth=" + token));
+        }), operators_1.map(function (bookingData) {
             var bookings = [];
             for (var key in bookingData) {
                 if (bookingData.hasOwnProperty(key)) {

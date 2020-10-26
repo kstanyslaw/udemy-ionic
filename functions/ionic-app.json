@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ionic-angular-course-14586",
+  "private_key_id": "144df334b45e0288d6327196d457eae77ff41444",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCtyiXqfsgS2dEJ\numPd0Dj6+g3J1Yh9USw+LOflDC1oY7gZ6qbdEt6ODNqDVQO/wozR7Qynn+CDVoQm\n4SE3M5lDOouKqttoXDiu0Y2zdvWjcs2iX4JcjWdnK/Uut2O/Ne51DBHFIKTDSrfG\n1MG9NoJaA9cjvlCmPl2l4Pvs8fKafIBT8s15gAUVoscvI3pTFvulSvaXCk7af35K\nsHfV8pDpnCX8S00e6PBVK3XnPmwwXOj+nlwh5GwAfkF07xclSNJqsQFQghisNU6q\nQfMgNv5CmHH+mG0xx8OCJRRH4i4x3XdUvLXYrtTmttjN4nEvhohZx0aiEUu11UtH\nQUjf8bsPAgMBAAECggEAIYzg/QA0x87dGC+vj+be2TTk7I4Yp3jAPdCVhBZxvbFi\nnT47sHowFOROWwRSkPaSEQTeaI3o3fIZ2RelPe7sK5plzgNmECOdncI+xOK2UTOc\nlzgxBoUV7UkDMF2fGA7lVhtaYuAGbt1B1VTFgi2/xHjxU6kuEKoBkkB44iljWIdW\ntipWVfxwOx0+2cAoaERJ75lL2hhl88OoSMnxMJa4FRUqnTYWTZHrSZxI5uaMyx4q\nHXdWxGE63Ms0v6r3IwNZF5o/LT+yF8INjXgKwo2UsjhxE3VkGonqF2i8fGCnhKAc\nVaaoWJkY+LDoeLm6CuD1XmXVEyLnspNkIW8HaOtqQQKBgQDpD93Fsiw5lT5Oozlv\n2B92jy+AZnw0qhIv8pFzz4ADUqMDLS0Cw51/4G+E615GBegpZ1A4q9cx0k7ykU9a\n+Drn99bjT0MS3yW3FxtyQpG27HlqOASlnqXNtSywZhfMYHm5ZClM4tllACjDBR2a\nV1kMQykiwkH4p8JwS31+Uc8/VwKBgQC+5OFiGLFP1zTr+ziWAU5mfrEfhQwJmBK8\n5L4Yc2OQ/jjWrmfzrmlJiQ7EzzXJDk+8XG96tzR/GMagfsihwDnxWXOYogHt754X\n8t1+oMZlh4zLKCLNUpYCZl4MNLoJAWReuTxxzB9hdTTzg+3RVBxSQe8/nZrSGCDN\nc1LzGufnCQKBgQCeFyQhIT38hW7xWqjwZBLbkj7vgxVHiAG0Qn9FpoA4QMrQsckx\ncc2ZW31qFVoqd4FG7IyvFGlxoy3oPocstusGRMigAjkGSRXFP0hf1iYPhhLJ6VvF\nmHrxsa6xrV8BRIPtLLMTM2GxsEz2FLdC5XNC7R+vM0QaznkHQT3L/ORvGwKBgQC7\nw0llQcB2NcnaK1p3QYWqDweNZ0J11Vzo612Hk0fmAAhMMXQSHgV1zRf3wZC32BnZ\nvlnwrG84bFhC2THi176mhEPNZ9zZ+ozYJYxz1xQOHYwA79N7fbYLWkE7ZElwPixJ\nd43aqNpc8/pHZAbxlPfeePgo7I6yBAWPz9VRRa/AcQKBgAMcXGZEHLo77qgFujzF\n7a2/9nhZblH0twfB/h7vic0tGysciqQ8T6edNFbLyh6MjCsRk/IHrE2MALpdXs8J\nDddFNLMfmoFzxIGWl3uxTT85fdMIl4JJ/yyta98VfyFxjWHsMR2TFUkQ/in+5Lwx\nFIJhJI4thXCNfwEcCXhDS0qR\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fz49v@ionic-angular-course-14586.iam.gserviceaccount.com",
+  "client_id": "117194842731365694415",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fz49v%40ionic-angular-course-14586.iam.gserviceaccount.com"
+}

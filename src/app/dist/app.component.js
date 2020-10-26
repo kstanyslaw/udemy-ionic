@@ -9,11 +9,13 @@ exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var core_2 = require("@capacitor/core");
+var operators_1 = require("rxjs/operators");
 var AppComponent = /** @class */ (function () {
     function AppComponent(platform, authService, router) {
         this.platform = platform;
         this.authService = authService;
         this.router = router;
+        this.previousAuthState = false;
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
@@ -22,10 +24,35 @@ var AppComponent = /** @class */ (function () {
                 core_2.Plugins.SplashScreen.hide();
             }
         });
+        core_2.Plugins.App.addListener('appStateChange', this.checkAuthOnResume.bind(this));
     };
     AppComponent.prototype.onLogout = function () {
         this.authService.logout();
-        this.router.navigate(['/', 'auth']);
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authSub = this.authService.userIsAuth.subscribe(function (isAuth) {
+            if (!isAuth && _this.previousAuthState !== isAuth) {
+                _this.router.navigate(['/', 'auth']);
+            }
+            _this.previousAuthState = isAuth;
+        });
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        this.authSub.unsubscribe();
+    };
+    AppComponent.prototype.checkAuthOnResume = function (state) {
+        var _this = this;
+        if (state.isActive) {
+            this.authService
+                .autoLogin()
+                .pipe(operators_1.take(1))
+                .subscribe(function (success) {
+                if (!success) {
+                    _this.onLogout();
+                }
+            });
+        }
     };
     AppComponent = __decorate([
         core_1.Component({
