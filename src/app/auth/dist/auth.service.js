@@ -75,7 +75,12 @@ var AuthService = /** @class */ (function () {
             return user;
         }), operators_1.tap(function (user) {
             _this._user.next(user);
-            _this.setAutoLogout(user.tokenDuration);
+            if (!user) {
+                _this.setAutoLogout(0);
+            }
+            else {
+                _this.setAutoLogout(user.tokenDuration);
+            }
         }), operators_1.map(function (user) {
             return !!user;
         }));
