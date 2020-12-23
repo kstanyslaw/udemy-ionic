@@ -1,6 +1,10 @@
 {
   "appId": "io.ionic.starter",
+<<<<<<< HEAD
   "appName": "course-project",
+=======
+  "appName": "first-project",
+>>>>>>> capacitor
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
